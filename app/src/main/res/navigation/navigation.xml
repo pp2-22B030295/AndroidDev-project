@@ -6,23 +6,61 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.androiddev_project.AuthFragment"
-        android:label="MainFragment" />
+        android:name="com.example.androiddev_project.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_regFragment"
+            app:destination="@id/regFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.androiddev_project.AuthFragment"
-        android:label="AuthFragment" />
+        android:label="AuthFragment" >
+        <action
+            android:id="@+id/action_authFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_regFragment"
+            app:destination="@id/regFragment" />
+    </fragment>
     <fragment
         android:id="@+id/regFragment"
         android:name="com.example.androiddev_project.RegFragment"
-        android:label="AuthFragment" />
+        android:label="RegFragment" >
+        <action
+            android:id="@+id/action_regFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_regFragment_to_authFragment"
+            app:destination="@id/authFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.androiddev_project.ProfileFragment"
-        android:label="AuthFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filterFragment"
         android:name="com.example.androiddev_project.FilterFragment"
-        android:label="AuthFragment" />
+        android:label="FilterFragment" >
+        <action
+            android:id="@+id/action_filterFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 
 </navigation>

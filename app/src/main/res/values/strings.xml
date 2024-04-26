@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">AndroidDev-project</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="categories">categories</string>
+    <string name="rating">rating</string>
+    <string name="title">movie-title</string>
+    <string name="duration">movie-duration</string>
+    <string name="user_name">user_name</string>
+
+
 </resources>

@@ -19,5 +19,7 @@ class MainFragment : Fragment() {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
+
     }
+
 }
