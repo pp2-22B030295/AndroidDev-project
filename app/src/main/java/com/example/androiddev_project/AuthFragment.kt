@@ -28,31 +28,44 @@ class AuthFragment : Fragment() {
         val button: Button = binding.buttonAuth
         val linkToReg: TextView = binding.linkToReg
 
+
         linkToReg.setOnClickListener {
             val intent = Intent(requireContext(), RegFragment::class.java)
             startActivity(intent)
         }
 
         button.setOnClickListener {
-            val login = userLogin.text.toString().trim()
-            val pass = userPassword.text.toString().trim()
+            val name = userLogin.text.toString().trim()
+            val password = userPassword.text.toString().trim()
 
-            if (login.isEmpty() || pass.isEmpty())
+            if (name.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Не все поля заполнены", Toast.LENGTH_LONG).show()
-            else {
-                val isAuth = true
+            } else {
+                val db = DbHelper(requireContext(), null)
+                val isAuth = db.getConfirmUser(name, password)
+
+                userLogin.text.clear()
+                userPassword.text.clear()
+
                 if (isAuth) {
-                    Toast.makeText(requireContext(), "Пользователь $login авторизован", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Пользователь $name авторизован", Toast.LENGTH_LONG)
+                        .show()
                     userLogin.text.clear()
                     userPassword.text.clear()
 
                     val intent = Intent(requireContext(), ProfileFragment::class.java)
                     startActivity(intent)
-                } else
-                    Toast.makeText(requireContext(), "Пользователь $login НЕ авторизован", Toast.LENGTH_LONG)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Пользователь $name НЕ авторизован",
+                        Toast.LENGTH_LONG
+                    )
                         .show()
+                }
             }
         }
+
         return binding.root
     }
 

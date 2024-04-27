@@ -1,6 +1,7 @@
 package com.example.androiddev_project
 
 import android.content.Intent
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+
 import androidx.fragment.app.Fragment
 import com.example.androiddev_project.databinding.FragmentRegBinding
 
@@ -39,21 +41,29 @@ class RegFragment : Fragment() {
         }
 
         button.setOnClickListener {
-            val login = userLogin.text.toString().trim()
-            val pass = userPassword.text.toString().trim()
+            val name = userLogin.text.toString().trim()
+            val password = userPassword.text.toString().trim()
 
-            if (login.isEmpty() || pass.isEmpty()) {
+            if (name.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Не все поля заполнены", Toast.LENGTH_LONG).show()
             } else {
-                //val user = User(login, pass)
+                val user = User(name, password)
 
-                //добавление юзера
-                Toast.makeText(requireContext(), "Пользователь $login добавлен", Toast.LENGTH_LONG).show()
+                val db = DbHelper(requireContext(), null)
+
+                try {
+                    db.addUser(user)
+                    Toast.makeText(requireContext(), "Пользователь $name добавлен", Toast.LENGTH_LONG).show()
+                } catch (e: SQLiteConstraintException) {
+                    Toast.makeText(requireContext(), "Пользователь с таким именем уже существует", Toast.LENGTH_LONG).show()
+                }
 
                 userLogin.text.clear()
                 userPassword.text.clear()
             }
         }
+
+
     }
 
     override fun onDestroyView() {

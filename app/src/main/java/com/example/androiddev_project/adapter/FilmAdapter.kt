@@ -6,23 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androiddev_project.Film
 import com.example.androiddev_project.databinding.ItemFilmBinding
 
-class FilmAdapter : RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
-    private val filmList: ArrayList<Film> = ArrayList()
-
-    fun setData(films: ArrayList<Film>){
-        filmList.clear()
-        filmList.addAll(films)
-
-        notifyDataSetChanged()
-
-    }
+class FilmAdapter(var filmList: List<Film>) :
+    RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            ItemFilmBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
+        val binding = ItemFilmBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = filmList.size
@@ -31,17 +20,20 @@ class FilmAdapter : RecyclerView.Adapter<FilmAdapter.ViewHolder>() {
         holder.bind(filmList[position])
     }
 
+
+
     inner class ViewHolder(private val binding: ItemFilmBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind(film: Film){
-                with(binding){
-                    filmImage.setImageResource(film.poster)
-                    filmTitle.text = film.title
-                    filmDescription.text = film.description
-                    filmRating.text = film.rating.toString()
-                }
-            }
 
+        fun bind(film: Film) {
+            with(binding) {
+                filmTitle.text = film.title
+                filmDescription.text = film.description
+                filmRating.text = film.rating.toString()
+                filmCategory.text= film.category
+            }
         }
+    }
 
 }
+

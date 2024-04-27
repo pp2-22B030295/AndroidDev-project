@@ -73,11 +73,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/film_categories"
+            android:id="@+id/film_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5sp"
-            android:text="@string/categories"
+            android:text="@string/category"
             android:textSize="12sp"
             android:textStyle="bold" />
 
