@@ -9,9 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.movie_application.DataBase.DbHelper
 import com.example.movie_application.MAIN
 import com.example.movie_application.R
-import com.example.movie_application.USER1
+import com.example.movie_application.USER
+import com.example.movie_application.User
 
 class AuthFragment : Fragment() {
 
@@ -42,35 +44,32 @@ class AuthFragment : Fragment() {
             if (name.isEmpty() || password.isEmpty()) {
                 Toast.makeText(requireContext(), "Не все поля заполнены", Toast.LENGTH_LONG).show()
             } else {
-
-                var isAuth = false
-
-                if(USER1.name == name && USER1.password == password){
-                    isAuth = true
-                }
-
-                userLogin.text.clear()
-                userPassword.text.clear()
+                val db = DbHelper(requireContext(), null)
+                val isAuth = db.getUser(name, password)
 
                 if (isAuth) {
-                    Toast.makeText(requireContext(), "Пользователь $name авторизован", Toast.LENGTH_LONG)
+                    Toast.makeText(
+                        requireContext(),
+                        "Пользователь $name авторизован",
+                        Toast.LENGTH_LONG
+                    )
                         .show()
                     userLogin.text.clear()
                     userPassword.text.clear()
-
+                    USER = User(name, password)
                     MAIN.navController.navigate(R.id.action_authFragment_to_profileFragment)
 
-                } else {
+                } else
                     Toast.makeText(
                         requireContext(),
                         "Пользователь $name НЕ авторизован",
                         Toast.LENGTH_LONG
                     )
                         .show()
-                }
+
+
             }
         }
-
     }
-
 }
+
