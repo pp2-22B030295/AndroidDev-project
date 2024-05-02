@@ -7,13 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movie_application.Film
 import com.example.movie_application.MAIN
 import com.example.movie_application.R
 import com.example.movie_application.USER
+import com.example.movie_application.USERS_LIB
 import com.example.movie_application.User
+import com.example.movie_application.adapter.FilmAdapter
 
 class ProfileFragment : Fragment() {
+    private lateinit var adapter: FilmAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,9 +34,15 @@ class ProfileFragment : Fragment() {
         val userLib: RecyclerView = view.findViewById(R.id.user_lib_list)
         val logoutButton: Button = view.findViewById(R.id.logout_button)
 
+        userName.text = USER?.name ?: "Unknown User"
 
-        userName.text = USER.name
 
+        val currentUserPair = USERS_LIB.find { it.first == USER }
+        val currentUserFilms = currentUserPair?.second ?: emptyList()
+
+        adapter = FilmAdapter(currentUserFilms)
+        userLib.adapter = adapter
+        userLib.layoutManager = LinearLayoutManager(requireContext())
 
 
         logoutButton.setOnClickListener{
@@ -40,5 +51,6 @@ class ProfileFragment : Fragment() {
         }
 
     }
+
 
 }

@@ -10,8 +10,8 @@ val MOVIES: List<Film> = listOf(
     Film("Witch","movie about witch", 8.7, "horror"),
     Film("Wolf","movie about wolf", 8.7, "horror")
 )
-lateinit var USERS: List<User>
 
 lateinit var USER: User
 
-lateinit var USERS_LIB: List<Pair<User, List<Film>>>
+var USERS_LIB: List<Pair<User, List<Film>>> = emptyList()
+

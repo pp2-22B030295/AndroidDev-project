@@ -13,10 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application.Film
 import com.example.movie_application.MOVIES
 import com.example.movie_application.R
+import com.example.movie_application.USER
+import com.example.movie_application.USERS_LIB
+import com.example.movie_application.User
 import com.example.movie_application.adapter.FilmAdapter
 import com.google.android.material.textfield.TextInputEditText
 
-class FilterFragment : Fragment() {
+class FilterFragment : Fragment(), FilmAdapter.OnAddButtonClickListener{
 
     private lateinit var adapter: FilmAdapter
     private lateinit var films: List<Film>
@@ -42,6 +45,7 @@ class FilterFragment : Fragment() {
         val horrorButton: Button = view.findViewById(R.id.horror_button)
 
         adapter = FilmAdapter(films)
+        adapter.setOnAddButtonClickListener(this)
         list.adapter = adapter
         list.layoutManager = LinearLayoutManager(requireContext())
 
@@ -65,6 +69,23 @@ class FilterFragment : Fragment() {
             }
         })
 
+
+    }
+
+    override fun onAddButtonClick(position: Int) {
+        val filmToAdd = films[position]
+
+        val currentUser = USER
+
+        val userIndex = USERS_LIB.indexOfFirst { it.first == currentUser }
+
+        if (userIndex != -1) {
+            val updatedFilms = USERS_LIB[userIndex].second.toMutableList()
+            updatedFilms.add(filmToAdd)
+            USERS_LIB = USERS_LIB.toMutableList().apply { set(userIndex, Pair(currentUser, updatedFilms.toList())) }
+        } else {
+            USERS_LIB += Pair(currentUser, listOf(filmToAdd))
+        }
 
     }
 
