@@ -1,23 +1,26 @@
 package com.example.movie_application.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movie_application.Film
-import com.example.movie_application.MAIN
 import com.example.movie_application.MOVIES
 import com.example.movie_application.R
 import com.example.movie_application.adapter.FilmAdapter
+import com.google.android.material.textfield.TextInputEditText
 
 class FilterFragment : Fragment() {
 
     private lateinit var adapter: FilmAdapter
-    private var films: List<Film> = MOVIES
+    private lateinit var films: List<Film>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,11 +32,14 @@ class FilterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val list : RecyclerView= view.findViewById(R.id.list)
-        val actionButton : Button= view.findViewById(R.id.action_button)
-        val showAllButton : Button= view.findViewById(R.id.show_all_button)
-        val fantasyButton : Button= view.findViewById(R.id.fantasy_button)
-        val horrorButton : Button= view.findViewById(R.id.horror_button)
+        films = MOVIES
+
+        val searching: TextInputEditText = view.findViewById(R.id.search_text)
+        val list: RecyclerView = view.findViewById(R.id.list)
+        val actionButton: Button = view.findViewById(R.id.action_button)
+        val showAllButton: Button = view.findViewById(R.id.show_all_button)
+        val fantasyButton: Button = view.findViewById(R.id.fantasy_button)
+        val horrorButton: Button = view.findViewById(R.id.horror_button)
 
         adapter = FilmAdapter(films)
         list.adapter = adapter
@@ -43,6 +49,28 @@ class FilterFragment : Fragment() {
         horrorButton.setOnClickListener { filterFilmsByCategory("horror") }
         actionButton.setOnClickListener { filterFilmsByCategory("action") }
         showAllButton.setOnClickListener { showAllFilms() }
+
+        searching.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                val searchTerm = s.toString().trim()
+                if (searchTerm.isNotEmpty()) {
+                    searchFilmsByName(searchTerm)
+                } else {
+                    showAllFilms()
+                }
+            }
+        })
+
+
+    }
+
+    private fun searchFilmsByName(name: String) {
+        val searchResult = films.filter { it.title.contains(name, ignoreCase = true) }
+        updateRecyclerView(searchResult)
     }
 
     private fun filterFilmsByCategory(category: String) {
@@ -58,5 +86,4 @@ class FilterFragment : Fragment() {
         adapter.filmList = films
         adapter.notifyDataSetChanged()
     }
-
 }

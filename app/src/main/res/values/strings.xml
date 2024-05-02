@@ -7,6 +7,7 @@
     <string name="duration">movie-duration</string>
     <string name="user_name">user_name</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_avatar">User Avatar</string>
 
 
 </resources>

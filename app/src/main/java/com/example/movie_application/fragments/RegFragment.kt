@@ -11,9 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.movie_application.MAIN
 import com.example.movie_application.R
-import com.example.movie_application.USER1
-import com.example.movie_application.USERS
 import com.example.movie_application.User
+import com.example.movie_application.dataBase.DbHelper
 
 class RegFragment : Fragment() {
 
@@ -35,7 +34,6 @@ class RegFragment : Fragment() {
             MAIN.navController.navigate(R.id.action_regFragment_to_authFragment)
         }
 
-
         buttonReg.setOnClickListener {
             val name = userLogin.text.toString().trim()
             val password = userPassword.text.toString().trim()
@@ -44,8 +42,9 @@ class RegFragment : Fragment() {
                 Toast.makeText(requireContext(), "Не все поля заполнены", Toast.LENGTH_LONG).show()
             } else {
                 val user = User(name, password)
-                USER1 = user
-//adding to list of users
+
+                val db = DbHelper(requireContext(), null)
+                db.addUser(user)
 
                 Toast.makeText(
                     requireContext(),
@@ -53,6 +52,7 @@ class RegFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
 
+                MAIN.navController.navigate(R.id.action_regFragment_to_authFragment)
                 userLogin.text.clear()
                 userPassword.text.clear()
             }

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".fragments.AuthFragment">
 
     <TextView
@@ -26,7 +27,7 @@
         android:ems="15"
         android:hint="Введите логин"
         android:inputType="text"
-        android:textColor="#fdfdfd"
+        android:textColor="#000000"
         android:textColorHint="#6a6a6a" />
 
     <EditText
