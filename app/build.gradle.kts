@@ -7,6 +7,10 @@ android {
     namespace = "com.example.movie_application"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.movie_application"
         minSdk = 24

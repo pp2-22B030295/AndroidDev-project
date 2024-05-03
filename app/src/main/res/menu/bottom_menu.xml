@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/button_to_profile"
+        android:title="Profile"
+        android:icon="@drawable/profile"
+        android:orderInCategory="4"/>
+    <item
+        android:id="@+id/button_to_login"
+        android:title="Filter"
+        android:icon="@drawable/login"
+        android:orderInCategory="3"/>
+    <item
+        android:id="@+id/button_to_filter"
+        android:title="Login"
+        android:icon="@drawable/filter"
+        android:orderInCategory="2"/>
+    <item
+        android:id="@+id/button_to_home"
+        android:title="Home"
+        android:icon="@drawable/home"
+        android:orderInCategory="1"/>
+
+</menu>
