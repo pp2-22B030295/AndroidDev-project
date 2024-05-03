@@ -2,6 +2,10 @@ package com.example.movie_application
 
 lateinit var MAIN: MainActivity
 
+lateinit var USER: User
+
+var USERS_LIB: List<Pair<User, List<Film>>> = emptyList()
+
 val MOVIES: List<Film> = listOf(
     Film("Marvel","movie about heroes", 8.7, "action"),
     Film("Person","movie about person", 8.7, "action"),
@@ -10,8 +14,3 @@ val MOVIES: List<Film> = listOf(
     Film("Witch","movie about witch", 8.7, "horror"),
     Film("Wolf","movie about wolf", 8.7, "horror")
 )
-
-lateinit var USER: User
-
-var USERS_LIB: List<Pair<User, List<Film>>> = emptyList()
-

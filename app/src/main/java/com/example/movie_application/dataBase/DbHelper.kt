@@ -1,5 +1,4 @@
-package com.example.movie_application.dataBase
-
+package com.example.movie_application.DataBase
 
 import android.annotation.SuppressLint
 import android.content.ContentValues

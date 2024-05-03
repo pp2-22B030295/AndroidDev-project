@@ -6,11 +6,6 @@
         android:icon="@drawable/profile"
         android:orderInCategory="4"/>
     <item
-        android:id="@+id/button_to_login"
-        android:title="Filter"
-        android:icon="@drawable/login"
-        android:orderInCategory="3"/>
-    <item
         android:id="@+id/button_to_filter"
         android:title="Login"
         android:icon="@drawable/filter"

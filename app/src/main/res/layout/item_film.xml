@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:textColor="@android:color/black"
                     tools:text="@string/title" />
             </LinearLayout>
 
@@ -57,6 +58,7 @@
                     android:layout_marginLeft="10sp"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textColor="@android:color/black"
                     tools:text="@string/rating" />
             </LinearLayout>
 
@@ -78,7 +80,8 @@
             android:layout_marginBottom="5sp"
             android:text="@string/duration"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:id="@+id/film_category"
@@ -87,7 +90,8 @@
             android:layout_marginBottom="5sp"
             android:text="@string/category"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:id="@+id/film_description"
@@ -96,6 +100,7 @@
             android:layout_marginBottom="5sp"
             android:textSize="10sp"
             android:textStyle="bold"
+            android:textColor="@android:color/black"
             tools:text="@string/description" />
     </LinearLayout>
 

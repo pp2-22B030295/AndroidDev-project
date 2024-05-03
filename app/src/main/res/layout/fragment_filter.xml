@@ -8,85 +8,107 @@
     android:background="@color/white"
     tools:context=".fragments.FilterFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/search_button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:hint="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="655dp"
+        android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/search_text"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:hint="Search"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#e2a600"
+                android:text="Action"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/horror_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#e2a600"
+                android:text="Horror"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/fantasy_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#e2a600"
+                android:text="Fantasy"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/show_all_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#e2a600"
+                android:text="Show all"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="496dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
-        <Button
-            android:id="@+id/action_button"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bNavMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:backgroundTint="#e2a600"
-            android:text="Action"
-            />
-
-        <Button
-            android:id="@+id/horror_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:backgroundTint="#e2a600"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:text="Horror" />
-
-        <Button
-            android:id="@+id/fantasy_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:backgroundTint="#e2a600"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:text="Fantasy" />
-
-        <Button
-            android:id="@+id/show_all_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:backgroundTint="#e2a600"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:text="Show all" />
+            android:layout_gravity="bottom"
+            android:background="#e2a600"
+            app:menu="@menu/bottom_menu" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="20dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>
