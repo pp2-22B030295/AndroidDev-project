@@ -1,6 +1,7 @@
 package com.example.movie_application
 
 class Film(
+    val id: Int,
     val title: String,
     val description: String,
     val rating: Double,

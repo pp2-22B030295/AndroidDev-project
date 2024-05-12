@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.movie_application.MAIN
+import androidx.navigation.fragment.findNavController
 import com.example.movie_application.R
 import com.example.movie_application.USER
-import com.example.movie_application.User
 import com.example.movie_application.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
@@ -16,7 +15,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainBinding.inflate(inflater)
         return binding.root
     }
@@ -27,16 +26,16 @@ class MainFragment : Fragment() {
         try {
             val user = USER
         } catch (e: UninitializedPropertyAccessException) {
-            USER = User("***", "***")
+            USER = "***"
         }
-        if(USER.name != "***"){
+        if(USER != "***"){
             binding.bNavMain.setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.button_to_filter -> {
-                        MAIN.navController.navigate(R.id.action_mainFragment_to_filterFragment)
+                        findNavController().navigate(R.id.action_mainFragment_to_filterFragment)
                     }
                     R.id.button_to_profile -> {
-                        MAIN.navController.navigate(R.id.action_mainFragment_to_profileFragment)
+                        findNavController().navigate(R.id.action_mainFragment_to_profileFragment)
                     }
                 }
                 true
@@ -46,10 +45,10 @@ class MainFragment : Fragment() {
             binding.bNavMain.setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.button_to_filter -> {
-                        MAIN.navController.navigate(R.id.action_mainFragment_to_filterFragment)
+                        findNavController().navigate(R.id.action_mainFragment_to_filterFragment)
                     }
                     R.id.button_to_profile -> {
-                        MAIN.navController.navigate(R.id.action_mainFragment_to_authFragment)
+                        findNavController().navigate(R.id.action_mainFragment_to_authFragment)
                     }
                 }
                 true

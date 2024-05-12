@@ -9,11 +9,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.movie_application.DataBase.DbHelper
-import com.example.movie_application.MAIN
 import com.example.movie_application.R
 import com.example.movie_application.USER
-import com.example.movie_application.User
 
 class AuthFragment : Fragment() {
 
@@ -33,7 +32,7 @@ class AuthFragment : Fragment() {
         val linkToReg: TextView = view.findViewById(R.id.linkToReg)
 
         linkToReg.setOnClickListener {
-            MAIN.navController.navigate(R.id.action_authFragment_to_regFragment)
+            findNavController().navigate(R.id.action_authFragment_to_regFragment)
 
         }
 
@@ -56,8 +55,8 @@ class AuthFragment : Fragment() {
                         .show()
                     userLogin.text.clear()
                     userPassword.text.clear()
-                    USER = User(name, password)
-                    MAIN.navController.navigate(R.id.action_authFragment_to_profileFragment)
+                    USER = name
+                    findNavController().navigate(R.id.action_authFragment_to_profileFragment)
 
                 } else
                     Toast.makeText(

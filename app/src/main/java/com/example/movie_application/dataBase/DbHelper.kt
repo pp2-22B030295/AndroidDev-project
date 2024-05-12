@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.example.movie_application.Film
 import com.example.movie_application.User
 
-class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?):
+class DbHelper(val context: Context, factory: SQLiteDatabase.CursorFactory?):
     SQLiteOpenHelper(context, "app", factory, 1) {
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -61,11 +61,12 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
         val cursor = db.rawQuery(query, null)
         if (cursor.moveToFirst()) {
             do {
+                val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val title = cursor.getString(cursor.getColumnIndex("title"))
                 val description = cursor.getString(cursor.getColumnIndex("description"))
                 val rating = cursor.getDouble(cursor.getColumnIndex("rating"))
                 val category = cursor.getString(cursor.getColumnIndex("category"))
-                films.add(Film(title, description, rating, category))
+                films.add(Film(id, title, description, rating, category))
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -81,11 +82,12 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
         val cursor = db.rawQuery(query, arrayOf(category))
         if (cursor.moveToFirst()) {
             do {
+                val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val title = cursor.getString(cursor.getColumnIndex("title"))
                 val description = cursor.getString(cursor.getColumnIndex("description"))
                 val rating = cursor.getDouble(cursor.getColumnIndex("rating"))
                 val filmCategory = cursor.getString(cursor.getColumnIndex("category"))
-                films.add(Film(title, description, rating, filmCategory))
+                films.add(Film(id, title, description, rating, filmCategory))
             } while (cursor.moveToNext())
         }
         cursor.close()
@@ -100,10 +102,11 @@ class DbHelper(val context: Context, val factory: SQLiteDatabase.CursorFactory?)
         val cursor = db.rawQuery(query, arrayOf(title))
         var film: Film? = null
         if (cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndex("id"))
             val description = cursor.getString(cursor.getColumnIndex("description"))
             val rating = cursor.getDouble(cursor.getColumnIndex("rating"))
             val category = cursor.getString(cursor.getColumnIndex("category"))
-            film = Film(title, description, rating, category)
+            film = Film(id, title, description, rating, category)
         }
         cursor.close()
         db.close()
