@@ -81,7 +81,7 @@ class FilterFragment : Fragment(), FilmAdapter.OnAddButtonClickListener{
 
 
         if(USER != "***"){
-            binding.bNavMain.setOnItemSelectedListener { menuItem ->
+            binding.bNavFilter.setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.button_to_home -> {
                         findNavController().navigate(R.id.action_filterFragment_to_mainFragment)
@@ -94,7 +94,7 @@ class FilterFragment : Fragment(), FilmAdapter.OnAddButtonClickListener{
             }
         }
         else{
-            binding.bNavMain.setOnItemSelectedListener { menuItem ->
+            binding.bNavFilter.setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.button_to_home -> {
                         findNavController().navigate(R.id.action_filterFragment_to_mainFragment)
@@ -166,5 +166,9 @@ class FilterFragment : Fragment(), FilmAdapter.OnAddButtonClickListener{
     private fun updateRecyclerView(films: List<Film>) {
         adapter.filmList = films
         adapter.notifyDataSetChanged()
+    }
+    override fun onResume() {
+        super.onResume()
+        binding.bNavFilter.selectedItemId=R.id.button_to_filter
     }
 }

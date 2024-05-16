@@ -100,7 +100,7 @@
         android:gravity="bottom">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bNavMain"
+            android:id="@+id/bNavFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
