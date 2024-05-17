@@ -1,60 +1,68 @@
 package com.example.movie_application.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.movie_application.ApiService
 import com.example.movie_application.R
+import com.example.movie_application.RetrofitClient
+import com.example.movie_application.databinding.FragmentFilmBinding
+import com.example.movie_application.reqInfo.TopFilm
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-/**
- * A simple [Fragment] subclass.
- * Use the [filmFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class filmFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    lateinit var binding: FragmentFilmBinding
+    private val BASE_URL = "http://10.0.2.2:8000/api/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        val apiService = RetrofitClient.getClient(BASE_URL).create(ApiService::class.java)
+
+        fetchFilms(apiService)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_film, container, false)
+        binding = FragmentFilmBinding.inflate(inflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment filmFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            filmFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun fetchFilms(apiService: ApiService) {
+        val call = apiService.getFilms()
+        call.enqueue(object : Callback<List<TopFilm>> {
+            override fun onResponse(call: Call<List<TopFilm>>, response: Response<List<TopFilm>>) {
+                if (response.isSuccessful) {
+                    val films = response.body()
+                    binding.apply {
+                        textView2.setText(films!![0].name)
+                        textView3.setText(films!![0].desc)
+                        textView4.setText(films!![0].score.toString())
+
+                        textView5.setText(films!![1].name)
+                        textView6.setText(films!![1].desc)
+                        textView7.setText(films!![1].score.toString())
+
+                        textView8.setText(films!![2].name)
+                        textView9.setText(films!![2].desc)
+                        textView10.setText(films!![2].score.toString())
+                    }
+                    Log.d("API", "Films: $films")
+                } else {
+                    Log.e("API_ERROR", "Response error: ${response.message()}")
                 }
             }
+
+            override fun onFailure(call: Call<List<TopFilm>>, t: Throwable) {
+                Log.e("API_ERROR", "Network error: ${t.message}")
+            }
+        })
     }
+
 }
