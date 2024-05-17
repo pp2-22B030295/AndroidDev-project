@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.movie_application.databinding.ActivityMainBinding
-import com.example.movie_application.reqInfo.Concert
-import com.example.movie_application.reqInfo.Human
-import com.example.movie_application.reqInfo.TopFilm
+import com.example.movie_application.Concert
+import com.example.movie_application.Human
+import com.example.movie_application.TopFilm
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Concert>>, response: Response<List<Concert>>) {
                 if (response.isSuccessful) {
                     val concerts = response.body()
-                    // Handle the concerts list
+
                     Log.d("API", "Concerts: $concerts")
                 } else {
                     Log.e("API_ERROR", "Response error: ${response.message()}")
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Human>>, response: Response<List<Human>>) {
                 if (response.isSuccessful) {
                     val humans = response.body()
-                    // Handle the humans list
+
                     Log.d("API", "Humans: $humans")
                 } else {
                     Log.e("API_ERROR", "Response error: ${response.message()}")
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<TopFilm>>, response: Response<List<TopFilm>>) {
                 if (response.isSuccessful) {
                     val films = response.body()
-                    // Handle the films list
+
                     Log.d("API", "Films: $films")
                 } else {
                     Log.e("API_ERROR", "Response error: ${response.message()}")

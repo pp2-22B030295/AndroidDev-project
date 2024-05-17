@@ -2,20 +2,17 @@ package com.example.movie_application.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.example.movie_application.R
-
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.movie_application.ApiService
+import com.example.movie_application.R
 import com.example.movie_application.RetrofitClient
-import com.example.movie_application.databinding.FragmentConcertBinding
 import com.example.movie_application.databinding.FragmentHumanBinding
-import com.example.movie_application.reqInfo.Human
-
+import com.example.movie_application.Human
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

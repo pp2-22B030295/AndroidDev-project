@@ -2,16 +2,14 @@ package com.example.movie_application.fragments
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.movie_application.ApiService
-import com.example.movie_application.R
 import com.example.movie_application.RetrofitClient
+import com.example.movie_application.TopFilm
 import com.example.movie_application.databinding.FragmentFilmBinding
-import com.example.movie_application.reqInfo.TopFilm
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

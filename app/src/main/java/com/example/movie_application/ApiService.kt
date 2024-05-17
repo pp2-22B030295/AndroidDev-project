@@ -1,8 +1,5 @@
 package com.example.movie_application
 
-import com.example.movie_application.reqInfo.Concert
-import com.example.movie_application.reqInfo.Human
-import com.example.movie_application.reqInfo.TopFilm
 import retrofit2.Call
 import retrofit2.http.GET
 

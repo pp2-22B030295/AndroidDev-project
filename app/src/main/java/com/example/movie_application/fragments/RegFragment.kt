@@ -13,22 +13,25 @@ import androidx.navigation.fragment.findNavController
 import com.example.movie_application.DataBase.DbHelper
 import com.example.movie_application.R
 import com.example.movie_application.User
+import com.example.movie_application.databinding.FragmentRegBinding
 
 class RegFragment : Fragment() {
+    lateinit var binding: FragmentRegBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_reg, container, false)
+        binding = FragmentRegBinding.inflate(inflater)
+        return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userLogin: EditText = view.findViewById(R.id.inputLogin)
-        val userPassword: EditText = view.findViewById(R.id.inputPassword)
-        val buttonReg: Button = view.findViewById(R.id.buttonReg)
-        val linkToAuth: TextView = view.findViewById(R.id.linkToAuth)
+        val userLogin: EditText = binding.inputLogin
+        val userPassword: EditText = binding.inputPassword
+        val buttonReg: Button = binding.buttonReg
+        val linkToAuth: TextView = binding.linkToAuth
 
         linkToAuth.setOnClickListener {
             findNavController().navigate(R.id.action_regFragment_to_authFragment)

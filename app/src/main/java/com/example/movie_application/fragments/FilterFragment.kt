@@ -42,11 +42,11 @@ class FilterFragment : Fragment(), FilmAdapter.OnAddButtonClickListener{
 
         films = MOVIES
         val searching = binding.searchText
-        val list: RecyclerView = view.findViewById(R.id.list)
-        val actionButton: Button = view.findViewById(R.id.action_button)
-        val showAllButton: Button = view.findViewById(R.id.show_all_button)
-        val fantasyButton: Button = view.findViewById(R.id.fantasy_button)
-        val horrorButton: Button = view.findViewById(R.id.horror_button)
+        val list: RecyclerView = binding.list
+        val actionButton: Button = binding.actionButton
+        val showAllButton: Button = binding.showAllButton
+        val fantasyButton: Button = binding.fantasyButton
+        val horrorButton: Button = binding.horrorButton
 
         adapter = FilmAdapter(films)
         adapter.setOnAddButtonClickListener(this)
@@ -167,6 +167,8 @@ class FilterFragment : Fragment(), FilmAdapter.OnAddButtonClickListener{
         adapter.filmList = films
         adapter.notifyDataSetChanged()
     }
+
+
     override fun onResume() {
         super.onResume()
         binding.bNavFilter.selectedItemId=R.id.button_to_filter

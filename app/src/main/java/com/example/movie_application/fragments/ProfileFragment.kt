@@ -31,8 +31,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userLib: RecyclerView = view.findViewById(R.id.user_lib_list)
-        val logoutButton: Button = view.findViewById(R.id.logout_button)
+        val userLib: RecyclerView = binding.userLibList
+        val logoutButton: Button = binding.logoutButton
 
         adapter = FilmAdapter(emptyList())
         userLib.adapter = adapter
