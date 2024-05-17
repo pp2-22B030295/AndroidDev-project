@@ -8,5 +8,8 @@
     <string name="user_name">user_name</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="user_avatar">User Avatar</string>
+    <string name="celebrit">Celebrities</string>
+    <string name="concert">Concerts</string>
+    <string name="film">Top films</string>
 </resources>
 

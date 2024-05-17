@@ -34,6 +34,15 @@
         <action
             android:id="@+id/action_mainFragment_to_authFragment"
             app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_concertFragment"
+            app:destination="@id/concert" />
+        <action
+            android:id="@+id/action_mainFragment_to_humanFragment"
+            app:destination="@id/human" />
+        <action
+            android:id="@+id/action_mainFragment_to_filmFragment"
+            app:destination="@id/filmFragment" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -68,4 +77,19 @@
             android:id="@+id/action_regFragment_to_authFragment"
             app:destination="@id/authFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/concert"
+        android:name="com.example.movie_application.fragments.Concert"
+        android:label="fragment_concert"
+        tools:layout="@layout/fragment_concert" />
+    <fragment
+        android:id="@+id/filmFragment"
+        android:name="com.example.movie_application.fragments.filmFragment"
+        android:label="fragment_film"
+        tools:layout="@layout/fragment_film" />
+    <fragment
+        android:id="@+id/human"
+        android:name="com.example.movie_application.fragments.human"
+        android:label="fragment_human"
+        tools:layout="@layout/fragment_human" />
 </navigation>

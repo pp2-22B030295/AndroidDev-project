@@ -23,6 +23,16 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.DeppImg.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_humanFragment)
+        }
+        binding.concertImg.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_concertFragment)
+        }
+        binding.topFilmsImg.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_filmFragment)
+        }
+
         try {
             val user = USER
         } catch (e: UninitializedPropertyAccessException) {

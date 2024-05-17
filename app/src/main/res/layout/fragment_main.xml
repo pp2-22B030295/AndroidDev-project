@@ -9,6 +9,90 @@
     android:orientation="vertical"
     tools:context=".fragments.MainFragment" >
 
+    <LinearLayout
+        android:id="@+id/TopFilmLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/DeppLinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/topFilmsImg"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/top_film"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        <TextView
+            android:id="@+id/filmTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/film" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/DeppLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ConcertLinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TopFilmLinearLayout">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/DeppImg"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/depp"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        <TextView
+            android:id="@+id/DeppTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/celebrit" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ConcertLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bNavMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeppLinearLayout">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/concertImg"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/concert"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        <TextView
+            android:id="@+id/concertTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/concert" />
+    </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bNavMain"
         android:layout_width="match_parent"
@@ -18,48 +102,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_menu" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/test2"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/depp"
-        app:layout_constraintBottom_toTopOf="@+id/test3"
-        app:layout_constraintEnd_toEndOf="@+id/test1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/test1"
-        app:layout_constraintTop_toBottomOf="@+id/test1"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/test3"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/depp"
-        app:layout_constraintBottom_toTopOf="@+id/bNavMain"
-        app:layout_constraintEnd_toEndOf="@id/test2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/test2"
-        app:layout_constraintTop_toBottomOf="@id/test2"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/test1"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/depp"
-        app:layout_constraintBottom_toTopOf="@id/test2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
