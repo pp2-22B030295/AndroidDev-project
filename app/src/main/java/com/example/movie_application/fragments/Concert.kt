@@ -1,66 +1,73 @@
 package com.example.movie_application.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.movie_application.ApiService
 import com.example.movie_application.R
+import com.example.movie_application.RetrofitClient
+import com.example.movie_application.databinding.FragmentConcertBinding
+import com.example.movie_application.databinding.FragmentMainBinding
+import com.example.movie_application.reqInfo.Concert
+
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Concert.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Concert : Fragment() {
-    private val BASE_URL = "http://127.0.0.1:8000/api"
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var binding: FragmentConcertBinding
+    private val BASE_URL = "http://10.0.2.2:8000/api/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        val apiService = RetrofitClient.getClient(BASE_URL).create(ApiService::class.java)
 
-
+        fetchConcerts(apiService)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_concert, container, false)
+        binding = FragmentConcertBinding.inflate(inflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Concert.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Concert().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun fetchConcerts(apiService: ApiService) {
+        val call = apiService.getConcerts()
+        call.enqueue(object : Callback<List<Concert>> {
+            override fun onResponse(call: Call<List<Concert>>, response: Response<List<Concert>>) {
+                if (response.isSuccessful) {
+                    val concerts = response.body()
+                    binding.apply {
+                        textView2.setText(concerts!![0].name)
+                        textView3.setText(concerts!![0].description)
+                        textView4.setText(concerts!![0].award)
+
+                        textView5.setText(concerts!![1].name)
+                        textView6.setText(concerts!![1].description)
+                        textView7.setText(concerts!![1].award)
+
+                        textView8.setText(concerts!![2].name)
+                        textView9.setText(concerts!![2].description)
+                        textView10.setText(concerts!![2].award)
+                    }
+                    Log.d("API", "Concerts: $concerts")
+                } else {
+                    Log.e("API_ERROR", "Response error: ${response.message()}")
                 }
             }
+
+            override fun onFailure(call: Call<List<Concert>>, t: Throwable) {
+                Log.e("API_ERROR", "Network error: ${t.message}")
+            }
+        })
     }
+
 }
 
 

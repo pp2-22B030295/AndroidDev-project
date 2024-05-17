@@ -1,60 +1,87 @@
 package com.example.movie_application.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.example.movie_application.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.bumptech.glide.Glide
+import com.example.movie_application.ApiService
+import com.example.movie_application.RetrofitClient
+import com.example.movie_application.databinding.FragmentConcertBinding
+import com.example.movie_application.databinding.FragmentHumanBinding
+import com.example.movie_application.reqInfo.Human
 
-/**
- * A simple [Fragment] subclass.
- * Use the [human.newInstance] factory method to
- * create an instance of this fragment.
- */
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 class human : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentHumanBinding
+    private val BASE_URL = "http://10.0.2.2:8000/api/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_human, container, false)
+        binding = FragmentHumanBinding.inflate(inflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment human.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            human().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val imageView1 = view.findViewById<ImageView>(R.id.firstHuman)
+        val imageView2 = view.findViewById<ImageView>(R.id.secondHuman)
+        val imageView3 = view.findViewById<ImageView>(R.id.thirdHuman)
+
+        Glide.with(this)
+            .load("https://www.instantaiprompt.com/wp-content/uploads/2023/11/emma-watson-ai-portrait.jpg")
+            .into(imageView1)
+        Glide.with(this)
+            .load("https://upload.wikimedia.org/wikipedia/commons/2/21/Johnny_Depp_2020.jpg")
+            .into(imageView2)
+        Glide.with(this)
+            .load("https://s6.stc.all.kpcdn.net/afisha/msk/wp-content/uploads/sites/5/2023/12/bred-pitt.jpg")
+            .into(imageView3)
+
+        val apiService = RetrofitClient.getClient(BASE_URL).create(ApiService::class.java)
+
+        fetchHumans(apiService)
+    }
+
+    private fun fetchHumans(apiService: ApiService) {
+        val call = apiService.getHumans()
+        call.enqueue(object : Callback<List<Human>> {
+            override fun onResponse(call: Call<List<Human>>, response: Response<List<Human>>) {
+                if (response.isSuccessful) {
+                    val humans = response.body()
+                    binding.apply {
+                        textView2.setText(humans!![0].name)
+                        textView3.setText(humans!![0].birth)
+                        textView4.setText(humans!![0].bio)
+
+                        textView5.setText(humans!![1].name)
+                        textView6.setText(humans!![1].birth)
+                        textView7.setText(humans!![1].bio)
+
+                        textView8.setText(humans!![2].name)
+                        textView9.setText(humans!![2].birth)
+                        textView10.setText(humans!![2].bio)
+                    }
+                    Log.d("API", "Humans: $humans")
+                } else {
+                    Log.e("API_ERROR", "Response error: ${response.message()}")
                 }
             }
+
+            override fun onFailure(call: Call<List<Human>>, t: Throwable) {
+                Log.e("API_ERROR", "Network error: ${t.message}")
+            }
+        })
     }
 }

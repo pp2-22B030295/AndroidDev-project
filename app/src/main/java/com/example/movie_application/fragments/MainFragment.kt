@@ -10,6 +10,8 @@ import com.example.movie_application.R
 import com.example.movie_application.USER
 import com.example.movie_application.databinding.FragmentMainBinding
 
+
+
 class MainFragment : Fragment() {
     lateinit var binding: FragmentMainBinding
     override fun onCreateView(
